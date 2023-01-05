@@ -52,8 +52,9 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, rando
 vocab_size = 2000
 
 model = Sequential()
-model.add(layers.Embedding(input_dim=vocab_size, output_dim=128, input_length=X.shape[1]))
-model.add(layers.Flatten())
+model.add(layers.Embedding(max_features, emb_dim, input_length=X.shape[1]))
+model.add(layers.SpatialDropout1D(0.7))
+model.add(layers.LSTM(64, dropout=0.7, recurrent_dropout=0.7))
 model.add(layers.Dense(2, activation='sigmoid'))
 
 # %%
@@ -64,15 +65,24 @@ model.compile(optimizer='adam',
 #print(model.summary())
 
 # %%
-epochs = 30
+epochs = 100
 batch_size = 256
 
+from tensorflow.keras.callbacks import EarlyStopping
+
+early_stopping = EarlyStopping(
+    min_delta=0.001, # minimium amount of change to count as an improvement
+    patience=10, # how many epochs to wait before stopping
+    restore_best_weights=True,
+)
+
 history = model.fit(X_train, Y_train,
-                    epochs=epochs, 
+                    epochs=epochs,
                     batch_size=batch_size,
-                    verbose=1, 
+                    verbose=1,
                     validation_split=0.2,
-                    )
+                    callbacks=[early_stopping],
+)
 
 # %%
 #score = model.evaluate(X_test, Y_test, verbose=1)
