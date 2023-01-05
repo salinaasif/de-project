@@ -92,4 +92,13 @@ history_df = pd.DataFrame(history.history)
 #history_df.loc[:, ['loss', 'val_loss']].plot(title="Cross-entropy")
 #history_df.loc[:, ['binary_accuracy', 'val_binary_accuracy']].plot(title="Accuracy")
 
+# %%
+twt = input('Entrez une phrase : ')
+twt = tokenizer.texts_to_sequences(twt)
+twt = pad_sequences(twt, maxlen=max_len)
 
+sentiment = model.predict(twt, batch_size=1, verbose = 2)[0]
+if(np.argmax(sentiment) == 0):
+    print("Négatif")
+elif (np.argmax(sentiment) == 1):
+    print("Positif")
