@@ -1,0 +1,11 @@
+numpy
+pandas
+nltk
+regex
+stopwords
+Sequential
+Tokenizer
+layers
+scikit-learn
+pad_sequences
+keras
