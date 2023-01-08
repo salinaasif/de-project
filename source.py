@@ -6,7 +6,6 @@ import pandas as pd
 import re
 import nltk
 import pandas as pd
-from textblob import Word
 from nltk.corpus import stopwords
 from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
@@ -50,9 +49,10 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, rando
 
 # %%
 vocab_size = 2000
+emb_dim = 128
 
 model = Sequential()
-model.add(layers.Embedding(max_features, emb_dim, input_length=X.shape[1]))
+model.add(layers.Embedding(vocab_size, emb_dim, input_length=X.shape[1]))
 model.add(layers.SpatialDropout1D(0.7))
 model.add(layers.LSTM(64, dropout=0.7, recurrent_dropout=0.7))
 model.add(layers.Dense(2, activation='sigmoid'))
