@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow
+FROM tensorflow/tensorflow:latest@sha256:eea5989852623037f354c49404b66761467516b79ab7af26e643b5ac7382c53f
 
 WORKDIR '/de-project'
 
