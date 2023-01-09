@@ -15,4 +15,4 @@ Au sein de ce repository git, vous trouverez :
 Afin de pouvoir saisir une phrase et obtenir le sentiment associé, plusieurs commandes sont à exécuter dans le terminal :
 
 1) docker pull jlydie/de-project:first	-> récupération de l’image depuis Docker Hub
-2) docker run -ti jlydie/de-project:first -> Run le conteneur afin de saisir une phrase en input.
+2) docker run -ti jlydie/de-project:first -> run le conteneur afin de saisir une phrase en input.
