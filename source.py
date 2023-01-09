@@ -104,6 +104,6 @@ twt = pad_sequences(twt, maxlen=32, dtype='int32', value=0)
 sentiment = model.predict(twt, batch_size=1, verbose = 0)[0]
 
 if(np.argmax(sentiment) == 0):
-    print("negative")
+    print("The sentence is : negative")
 elif (np.argmax(sentiment) == 1):
-    print("positive")
+    print("The sentence is : positive")
