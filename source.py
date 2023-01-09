@@ -96,7 +96,7 @@ history = model.fit(X_train, Y_train,
 #history_df.loc[:, ['accuracy', 'val_accuracy']].plot(title="Accuracy")
 
 # %%
-twt = input('Entrez une phrase : ')
+twt = input('Enter a finance related sentence : ')
 twt = [twt]
 twt = tokenizer.texts_to_sequences(twt)
 twt = pad_sequences(twt, maxlen=32, dtype='int32', value=0)
